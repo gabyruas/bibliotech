@@ -1,5 +1,11 @@
 import { useContext } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Form,
+  Tooltip,
+  OverlayTrigger,
+} from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -69,10 +75,21 @@ export function Login() {
         Não tem conta? <Link to="/cadastro">Cadastre-se</Link>
       </p>
       <hr />
-      <Button className="mb-3" variant="danger" onClick={onLoginGoogle}>
-        <img src={googleIcon} width="32" alt="Google icon" /> Entrar com o
-        Google
-      </Button>
+      <OverlayTrigger
+        delay={{ hide: 450, show: 300 }}
+        overlay={(props) => (
+          <Tooltip {...props}>
+            O Google compartilhará com Bibliotech seu nome, endereço de e-mail e
+            sua foto do perfil.
+          </Tooltip>
+        )}
+        placement="right"
+      >
+        <Button className="mb-3" variant="danger" onClick={onLoginGoogle}>
+          <img src={googleIcon} width="32" alt="Google icon" /> Entrar com o
+          Google
+        </Button>
+      </OverlayTrigger>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
@@ -98,9 +115,19 @@ export function Login() {
             {errors.senha?.message}
           </Form.Text>
         </Form.Group>
-        <Button type="submit" variant="success">
-          Entrar
-        </Button>
+        <OverlayTrigger
+          delay={{ hide: 450, show: 300 }}
+          overlay={(props) => (
+            <Tooltip {...props}>
+              Você será direcionado para a página principal de Bibliotech.
+            </Tooltip>
+          )}
+          placement="right"
+        >
+          <Button type="submit" variant="success">
+            Entrar
+          </Button>
+        </OverlayTrigger>
       </Form>
     </Container>
   );
