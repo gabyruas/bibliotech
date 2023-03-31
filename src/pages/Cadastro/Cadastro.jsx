@@ -1,4 +1,4 @@
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoIcon from "../../assets/icons/livros.png";
 import googleIcon from "../../assets/icons/google-white.svg";
@@ -6,8 +6,13 @@ import { useForm } from "react-hook-form";
 import { cadastrarEmailSenha, loginGoogle } from "../../firebase/auth";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Eye, EyeSlash } from 'react-bootstrap-icons';
 
 export function Cadastro() {
+
+  const [mostraSenha, setMostraSenha] = useState(false) // inicia com type "password", ao clicar no botão muda para "text"
+
   const {
     register,
     handleSubmit,
@@ -68,7 +73,7 @@ export function Cadastro() {
         Entrar com o Google
       </Button>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="email">
+        <Form.Group className="mb-3" controlId="email" style={{ width: '300px' }}>
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
@@ -80,14 +85,26 @@ export function Cadastro() {
             {errors.email?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="password">
+        <Form.Group className="mb-3" controlId="password" style={{ width: '300px' }}>
           <Form.Label>Senha</Form.Label>
-          <Form.Control
-            type="password"
-            className={errors.senha && "is-invalid"}
-            placeholder="Sua senha"
-            {...register("senha", { required: "A senha é obrigatória" })}
-          />
+          {/* INICIO  botão mostra/oculta senha */}
+          <InputGroup>
+            <Form.Control
+              type={mostraSenha ? "text" : "password"}
+              className={errors.senha && "is-invalid"}
+              placeholder="Sua senha"
+              {...register("senha", { required: "A senha é obrigatória" })}
+            />
+            <Button
+              type="button"
+              className="secondary"
+              variant="outline-success"
+              onClick={() => setMostraSenha(!mostraSenha)}>
+              {mostraSenha ? <Eye /> : <EyeSlash />}
+            </Button>
+          </InputGroup> 
+          {/* FIM botão mostra/oculta senha */}
+
           <Form.Text className="invalid-feedback">
             {errors.senha?.message}
           </Form.Text>
