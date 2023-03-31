@@ -5,6 +5,7 @@ import {
   OverlayTrigger,
   Table,
   Tooltip,
+  Modal
 } from "react-bootstrap";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
@@ -18,6 +19,13 @@ export function Livros() {
   useEffect(() => {
     initializeTable();
   }, []);
+
+    const [livros, setLivros] = useState(null);
+    const [livroSelecionado, setLivroSelecionado] = useState(null);
+
+    function onSelectLivro(livro) {
+        setLivroSelecionado(livro);
+      }
 
   function initializeTable() {
     getLivros().then((resultados) => {

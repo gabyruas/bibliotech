@@ -48,6 +48,12 @@ export function Menu() {
                 <i className="bi bi-box-arrow-right"></i>
               </Nav.Link>
             </OverlayTrigger>
+            <Nav.Link as={Link} to="/ajuda">
+              Ajuda
+            </Nav.Link>
+            <Nav.Link onClick={onLogout}>
+              <i className="bi bi-box-arrow-right"></i>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
