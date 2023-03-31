@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Badge, Button, Container, Table } from "react-bootstrap";
+import { Badge, Button, Container, OverlayTrigger, Table, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getEmprestimos } from "../../firebase/emprestimos";
 import { Loader } from "../../components/Loader/Loader";
@@ -19,7 +19,19 @@ export function Emprestimos() {
             <Container>
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Emprestimos</h1>
-                    <Button as={Link} to="/emprestimos/adicionar" variant="success">Adicionar emprestimo</Button>
+                    <OverlayTrigger
+                        delay={{ hide: 450, show: 300 }}
+                        overlay={(props) => (
+                        <Tooltip {...props}>
+                            Você será direcionado para a página de adicionar empréstimo.
+                        </Tooltip>
+                        )}
+                        placement="left"
+                    >
+                        <Button as={Link} to="/emprestimos/adicionar" variant="success">
+                        Adicionar emprestimo
+                        </Button>
+                    </OverlayTrigger>
                 </div>
                 <hr />
                 {
@@ -52,14 +64,24 @@ export function Emprestimos() {
                                             </td>
                                             <td>{dataEmprestimo}</td>
                                             <td>
+                                            <OverlayTrigger
+                                                delay={{ hide: 450, show: 300 }}
+                                                overlay={(props) => (
+                                                <Tooltip {...props}>
+                                                    Editar dados do empréstimo.
+                                                </Tooltip>
+                                                )}
+                                                placement="auto-start"
+                                            >
                                                 <Button
-                                                    as={Link}
-                                                    to={`/emprestimos/editar/${emprestimo.id}`}
-                                                    variant="warning"
-                                                    size="sm"
+                                                as={Link}
+                                                to={`/emprestimos/editar/${emprestimo.id}`}
+                                                variant="warning"
+                                                size="sm"
                                                 >
-                                                    <i className="bi bi-pencil-fill"></i>
+                                                <i className="bi bi-pencil-fill"></i>
                                                 </Button>
+                                            </OverlayTrigger>
                                             </td>
                                         </tr>
                                     )

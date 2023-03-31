@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
@@ -83,7 +83,20 @@ export function EditarEmprestimo() {
                             {errors.status?.message}
                         </Form.Text>
                     </Form.Group>
-                    <Button type="submit" variant="success">Editar</Button>
+                    <OverlayTrigger
+                        delay={{ hide: 450, show: 300 }}
+                        overlay={(props) => (
+                        <Tooltip {...props}>
+                            Ao editar o empréstimo, certifique-se que todos os dados estejam
+                            corretos.
+                        </Tooltip>
+                        )}
+                        placement="right"
+                    >
+                        <Button type="submit" variant="success">
+                        Editar
+                        </Button>
+                    </OverlayTrigger>
                 </Form>
             </Container>
         </div>

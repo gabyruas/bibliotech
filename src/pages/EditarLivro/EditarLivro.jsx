@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
@@ -80,8 +80,21 @@ export function EditarLivro() {
                         <Form.Label>Imagem da capa</Form.Label>
                         <Form.Control type="file" {...register("imagem")} />
                     </Form.Group>
-                    <Button type="submit" variant="success">Editar</Button>
-                </Form>
+                    <OverlayTrigger
+                        delay={{ hide: 450, show: 300 }}
+                        overlay={(props) => (
+                        <Tooltip {...props}>
+                            Ao editar um livro, certifique-se que todos os dados estejam
+                            corretos.
+                        </Tooltip>
+                        )}
+                        placement="right"
+                    >
+                        <Button type="submit" variant="success">
+                        Editar
+                        </Button>
+                    </OverlayTrigger>
+                    </Form>
             </Container>
         </div>
     )

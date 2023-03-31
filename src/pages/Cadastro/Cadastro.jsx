@@ -1,4 +1,4 @@
-import { Button, Container, Form, InputGroup } from "react-bootstrap";
+import { Button, Container, Form, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoIcon from "../../assets/icons/livros.png";
 import googleIcon from "../../assets/icons/google-white.svg";
@@ -68,10 +68,21 @@ export function Cadastro() {
         Já tem conta? <Link to="/login">Entre</Link>
       </p>
       <hr />
-      <Button className="mb-3" variant="danger" onClick={onLoginGoogle}>
-        <img src={googleIcon} width="32" alt="Logo do google" />
-        Entrar com o Google
-      </Button>
+      <OverlayTrigger
+        delay={{ hide: 450, show: 300 }}
+        overlay={(props) => (
+          <Tooltip {...props}>
+            O Google compartilhará com Bibliotech seu nome, endereço de e-mail e
+            sua foto do perfil.
+          </Tooltip>
+        )}
+        placement="right"
+      >
+        <Button className="mb-3" variant="danger" onClick={onLoginGoogle}>
+          <img src={googleIcon} width="32" alt="Logo do google" />
+          Entrar com o Google
+        </Button>
+      </OverlayTrigger>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="email" style={{ width: '300px' }}>
           <Form.Label>Email</Form.Label>
@@ -109,9 +120,19 @@ export function Cadastro() {
             {errors.senha?.message}
           </Form.Text>
         </Form.Group>
-        <Button type="submit" variant="success">
-          Cadastrar
-        </Button>
+        <OverlayTrigger
+          delay={{ hide: 450, show: 300 }}
+          overlay={(props) => (
+            <Tooltip {...props}>
+              Você será direcionado para a página principal de Bibliotech.
+            </Tooltip>
+          )}
+          placement="right"
+        >
+          <Button type="submit" variant="success">
+            Cadastrar
+          </Button>
+        </OverlayTrigger>
       </Form>
     </Container>
   );

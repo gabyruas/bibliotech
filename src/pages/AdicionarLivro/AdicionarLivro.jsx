@@ -1,4 +1,4 @@
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -70,7 +70,20 @@ export function AdicionarLivro() {
                         <Form.Label>Imagem da capa</Form.Label>
                         <Form.Control type="file" accept=".png,.jpg,.jpeg,.gif" {...register("imagem")} />
                     </Form.Group>
-                    <Button type="submit" variant="success">Adicionar</Button>
+                    <OverlayTrigger
+                        delay={{ hide: 450, show: 300 }}
+                        overlay={(props) => (
+                        <Tooltip {...props}>
+                            Ao adicionar um livro, certifique-se que todos os campos estejam
+                            preenchidos corretamente.
+                        </Tooltip>
+                        )}
+                        placement="right"
+                    >
+                        <Button type="submit" variant="success">
+                        Adicionar
+                        </Button>
+                    </OverlayTrigger>
                 </Form>
             </Container>
         </div>
