@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Container, Table, Modal } from "react-bootstrap";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
@@ -9,6 +9,11 @@ import "./Livros.css";
 export function Livros() {
 
     const [livros, setLivros] = useState(null);
+    const [livroSelecionado, setLivroSelecionado] = useState(null);
+
+    function onSelectLivro(livro) {
+        setLivroSelecionado(livro);
+      }
 
     useEffect(() => {
         initializeTable();
@@ -28,6 +33,14 @@ export function Livros() {
                 initializeTable();
             })
         }
+    }
+
+    function showLivroDetails(livro){
+        setLivroSelecionado(livro);
+    }
+
+    function hidelivroDetails() {
+        livroSelecionado(null);
     }
 
     return (
@@ -78,6 +91,12 @@ export function Livros() {
                                             <Button size="sm" variant="danger" onClick={() => onDeleteLivro(livro.id, livro.titulo)}>
                                                 <i className="bi bi-trash3-fill"></i>
                                             </Button>
+
+                                            <Button size="sm"
+                                             variant="primary" 
+                                             onClick={() => onSelectLivro(livro)}>
+                                            <i className="bi bi-info-circle-fill"></i>
+                                            </Button>
                                         </td>
                                     </tr>
                                 )
@@ -85,7 +104,30 @@ export function Livros() {
                         </tbody>
                     </Table>
                 }
-            </Container>
+                <Modal show={livroSelecionado !== null} onHide={() => setLivroSelecionado(null)}>
+                <Modal.Header closeButton>
+    <Modal.Title>Detalhes do Livro</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {livroSelecionado && (
+      <div>
+        <h5>{livroSelecionado.titulo}</h5>
+        <p>Autor: {livroSelecionado.autor}</p>
+        <p>Categoria: {livroSelecionado.categoria}</p>
+        <p>ISBN: {livroSelecionado.isbn}</p>
+        <img style={{width:"200px"}} src={livroSelecionado.urlCapa} alt={livroSelecionado.titulo} />
+      </div>
+    )}
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={() => setLivroSelecionado(null)}>
+      Fechar
+    </Button>
+  </Modal.Footer>
+</Modal>
+</Container>
         </div>
     )
 }
+
+

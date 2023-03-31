@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { useContext, useState } from "react";
+import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -7,8 +7,12 @@ import googleIcon from "../../assets/icons/google-white.svg";
 import loginImg from "../../assets/images/login.png";
 import { AuthContext } from "../../contexts/AuthContext";
 import { loginGoogle, loginEmailSenha } from "../../firebase/auth";
+import { Eye, EyeSlash } from 'react-bootstrap-icons';
 
 export function Login() {
+  
+  const [mostraSenha, setMostraSenha] = useState(false)
+  
   const {
     register,
     handleSubmit,
@@ -74,7 +78,7 @@ export function Login() {
         Google
       </Button>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="email">
+        <Form.Group className="mb-3" controlId="email" style={{width: '300px'}}>
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
@@ -86,14 +90,23 @@ export function Login() {
             {errors.email?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="senha">
+        <Form.Group className="mb-3" controlId="senha" style={{width: '300px'}}>
           <Form.Label>Senha</Form.Label>
+          <InputGroup>
           <Form.Control
-            type="password"
+            type={mostraSenha ? "text" : "password"}
             placeholder="Sua senha"
             className={errors.senha ? "is-invalid" : ""}
             {...register("senha", { required: "Senha é obrigatória" })}
           />
+            <Button
+            type="button"
+            className="secondary"
+            variant = "outline-success"
+            onClick={() => setMostraSenha(!mostraSenha)}>
+              {mostraSenha ? <Eye/> : <EyeSlash />}
+            </Button>
+          </InputGroup>
           <Form.Text className="invalid-feedback">
             {errors.senha?.message}
           </Form.Text>
