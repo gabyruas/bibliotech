@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Table, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  OverlayTrigger,
+  Table,
+  Tooltip,
+  Modal
+} from "react-bootstrap";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
@@ -38,6 +45,7 @@ export function Livros() {
       });
     }
   }
+
 
 //   function showLivroDetails(livro) {
 //     setLivroSelecionado(livro);
@@ -93,7 +101,7 @@ export function Livros() {
                       <img src={livro.urlCapa} alt={livro.titulo} />
                     </td>
                     <td>
-                    <OverlayTrigger
+                      <OverlayTrigger
                         delay={{ hide: 450, show: 300 }}
                         overlay={(props) => (
                           <Tooltip {...props}>Editar dados do livro</Tooltip>

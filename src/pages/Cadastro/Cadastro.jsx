@@ -1,4 +1,11 @@
-import { Button, Container, Form, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Form,
+  OverlayTrigger,
+  Tooltip,
+  InputGroup
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoIcon from "../../assets/icons/livros.png";
 import googleIcon from "../../assets/icons/google-white.svg";

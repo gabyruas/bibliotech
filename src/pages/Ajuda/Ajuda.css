@@ -1,0 +1,19 @@
+
+.carrossel {
+    width: 18rem;
+    height: 20rem; /* fit-content; */
+    display:flex;
+    box-sizing: border-box;
+    justify-content: center;
+    margin: 0 auto;
+    
+}
+.card {
+    width: 18rem;
+    height: 20rem; /* fit-content; */
+    display:flex;
+    
+}
+h1 {
+    text-align: center;
+}
