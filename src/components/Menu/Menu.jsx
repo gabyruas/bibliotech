@@ -45,7 +45,6 @@ export function Menu() {
             <OverlayTrigger
               delay={{ hide: 450, show: 300 }}
               overlay={(props) => <Tooltip {...props}>Sair</Tooltip>}
-              
               placement="auto-start"
             >
               <Nav.Link onClick={onLogout}>
