@@ -39,21 +39,19 @@ export function Menu() {
             <Nav.Link as={Link} to="/emprestimos">
               Emprestimos
             </Nav.Link>
+            <Nav.Link as={Link} to="/ajuda">
+              Ajuda
+            </Nav.Link>
             <OverlayTrigger
               delay={{ hide: 450, show: 300 }}
               overlay={(props) => <Tooltip {...props}>Sair</Tooltip>}
+              
               placement="auto-start"
             >
               <Nav.Link onClick={onLogout}>
                 <i className="bi bi-box-arrow-right"></i>
               </Nav.Link>
             </OverlayTrigger>
-            <Nav.Link as={Link} to="/ajuda">
-              Ajuda
-            </Nav.Link>
-            <Nav.Link onClick={onLogout}>
-              <i className="bi bi-box-arrow-right"></i>
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

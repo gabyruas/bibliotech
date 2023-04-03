@@ -1,66 +1,69 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
 import "./Footer.css";
-import { Container } from 'react-bootstrap';
-
+import { Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGithub, faInstagram, faGoogle, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import {
+    MDBFooter,
+    MDBContainer,
+    MDBBtn
+} from 'mdb-react-ui-kit';
+import { Link } from "react-router-dom";
 
 export function Footer() {
     return (
-        <Container>
-        <div className="footer" >
-            <div className="container">
-                <div className="row">
-                    {/* Coluna 1 */}
-                        <h6>Dúvidas? E-mail para <Link>suporte-bibliotech@mail.com</Link></h6>
-                    <div className="col-md-3 col-sm-6">
+        <MDBFooter className='bg-light text-center text-white mt-4'>
+            <MDBContainer className='p-4 pb-0'>
+                <Row>
+                    <Col>
+                        <div className="bg-light social-icons mb-2">
+                            <MDBBtn
+                                className='m-2 border border-none'
+                                style={{ backgroundColor: '#333333' }}
+                                href="https://github.com">
+                                <FontAwesomeIcon icon={faGithub} />
+                            </MDBBtn>
 
-                        <ul className='list-unstyled'>
-                            <li><Link>FAQ</Link></li>
-                            <li><Link>Avisos legais</Link></li>
-                            <li><Link>Informações corporativas</Link></li>
-                            <li><Link>Só na Bibliotech</Link></li>
-                        </ul>
-                    </div>
-                    {/* Coluna 2 */}
-                    <div className="col-md-3 col-sm-6">
-                        
-                        <ul className='list-unstyled'>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    {/* Coluna 3 */}
-                    <div className="col-md-3 col-sm-6">
-                        
-                        <ul className='list-unstyled'>
-                        
-                            <li><Link>Central de ajuda</Link></li>
-                            <li><Link>Central de ajuda</Link></li>
-                            <li><Link>Entre em contato</Link></li>
-                            <li><Link>Privacidade</Link></li>
-                        </ul>
-                    </div>
-                    {/* Coluna 4 */}
-                    <div className="col-md-3 col-sm-6">
-                        
-                        <ul className='list-unstyled'>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="footer-bottom">
-                    <p className="text-xs-center">
-                        &copy;{new Date().getFullYear()} Bibliotech - Todos os direitos reservados.
-                    </p>
-                </div>
-            </div>
-        </div>
-        </Container>
+                            <MDBBtn
+                                className='m-2 border border-none'
+                                style={{ backgroundColor: '#3B5998' }}
+                                href="https://www.facebook.com">
+                                <FontAwesomeIcon icon={faFacebook} />
+                            </MDBBtn>
+
+                            <MDBBtn
+                                className='m-2 border border-none'
+                                style={{ backgroundColor: '#ac2bac' }}
+                                href="https://www.instagram.com">
+                                <FontAwesomeIcon icon={faInstagram} />
+                            </MDBBtn>
+
+                            <MDBBtn className='m-2 border border-none'
+                                style={{ backgroundColor: '#db4a39' }}
+                                href="https://www.google.com">
+                                <FontAwesomeIcon icon={faGoogle} />
+                            </MDBBtn>
+
+                            <MDBBtn className='m-2 border border-none'
+                                style={{ backgroundColor: '#0082ca' }}
+                                href="https://www.linkedin.com/in/gustavoleonardi/"
+                                role='button'>
+                                <FontAwesomeIcon icon={faLinkedin} />
+                            </MDBBtn>
+                        </div>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                        <div className='text-center p-3' style={{ backgroundColor: '#198754ab' }}>
+
+                            <a className='text-light' href='https://www.linkedin.com/in/gustavoleonardi/'>
+                                © Gustavo Leonardi
+                            </a>
+                        </div>
+                    </Col>
+                </Row>
+            </MDBContainer>
+        </MDBFooter>
     );
-
 }
