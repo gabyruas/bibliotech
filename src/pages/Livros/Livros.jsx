@@ -14,18 +14,18 @@ import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
 
 export function Livros() {
-  const [livros, setLivros] = useState(null);
+  // const [livros, setLivros] = useState(null);
 
   useEffect(() => {
     initializeTable();
   }, []);
 
-    const [livros, setLivros] = useState(null);
-    const [livroSelecionado, setLivroSelecionado] = useState(null);
+  const [livros, setLivros] = useState(null);
+  const [livroSelecionado, setLivroSelecionado] = useState(null);
 
-    function onSelectLivro(livro) {
-        setLivroSelecionado(livro);
-      }
+  function onSelectLivro(livro) {
+    setLivroSelecionado(livro);
+  }
 
   function initializeTable() {
     getLivros().then((resultados) => {
