@@ -15,7 +15,9 @@ import { AdicionarEmprestimo } from "./pages/AdicionarEmprestimo/AdicionarEmpres
 import { Emprestimos } from "./pages/Emprestimos/Emprestimos";
 import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
 import { Ajuda } from "./pages/Ajuda/Ajuda";
+import { Quiz } from "./pages/Quiz/Quiz";
 import { NotFound } from "./pages/NotFound/NotFound";
+
 
 export function App() {
   const [usuarioLogado, setUsuarioLogado] = useState(null);
@@ -49,6 +51,7 @@ export function App() {
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/quiz" element={<Quiz />} />
             <Route path="/ajuda" element={<Ajuda/>} />
             <Route path="*" element={<NotFound />} ></Route>
           </Routes>

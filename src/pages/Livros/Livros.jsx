@@ -14,6 +14,7 @@ import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
 
 export function Livros() {
+
   const [livros, setLivros] = useState(null);
   const [livroSelecionado, setLivroSelecionado] = useState(null);
   
@@ -24,6 +25,7 @@ export function Livros() {
   useEffect(() => {
     initializeTable();
   }, []);
+
 
   function initializeTable() {
     getLivros().then((resultados) => {
