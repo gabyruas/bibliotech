@@ -12,7 +12,6 @@ export function Ajuda() {
 
     return (
         <>
-        <Container>
             <Navbar bg="success" variant="light" expand="lg">
                 <Container fluid>
                     <Navbar.Brand>
@@ -81,6 +80,7 @@ export function Ajuda() {
 {/* ---------------------- fim Carousel ---------------------- */}
 <br />
 {/* ---------------------- inicio accordion ---------------------- */}
+        <Container className="mb-5">
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>O que é o Bibliotech?</Accordion.Header>
@@ -120,27 +120,10 @@ export function Ajuda() {
                         culpa qui officia deserunt mollit anim id est laborum.
                     </Accordion.Body>
                 </Accordion.Item>
-
             </Accordion>
+        </Container>
 
 {/* ---------------------- fim accordion ---------------------- */}
-
-
-
-
-
-
-
-
-
-        </Container>
-        <br /><br />
-    <Footer>
-        <strong style={{backgroundColor:"blue"}}>
-
-        </strong>
-    </Footer>
-        
-        </>
+           </>
     )
 }

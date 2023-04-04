@@ -14,18 +14,18 @@ import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
 
 export function Livros() {
-  // const [livros, setLivros] = useState(null);
+
+  const [livros, setLivros] = useState(null);
+  const [livroSelecionado, setLivroSelecionado] = useState(null);
+  
+  function onSelectLivro(livro) {
+    setLivroSelecionado(livro);
+  }
 
   useEffect(() => {
     initializeTable();
   }, []);
 
-  const [livros, setLivros] = useState(null);
-  const [livroSelecionado, setLivroSelecionado] = useState(null);
-
-  function onSelectLivro(livro) {
-    setLivroSelecionado(livro);
-  }
 
   function initializeTable() {
     getLivros().then((resultados) => {
@@ -47,6 +47,15 @@ export function Livros() {
       });
     }
   }
+
+
+//   function showLivroDetails(livro) {
+//     setLivroSelecionado(livro);
+//   }
+
+//   function hidelivroDetails() {
+//     livroSelecionado(null);
+//   }
 
   return (
     <div className="livros">
@@ -121,10 +130,26 @@ export function Livros() {
                         <Button
                           size="sm"
                           variant="danger"
+                          className="me-2"
                           onClick={() => onDeleteLivro(livro.id, livro.titulo)}
                         >
                           <i className="bi bi-trash3-fill"></i>
                         </Button>
+                      </OverlayTrigger>
+                      <OverlayTrigger
+                        delay={{ hide: 450, show: 300 }}
+                        overlay={(props) => (
+                          <Tooltip {...props}>Detalhes do livro</Tooltip>
+                        )}
+                        placement="top"
+                      >
+                      <Button
+                        size="sm"
+                        variant="primary"
+                        onClick={() => onSelectLivro(livro)}
+                      >
+                        <i className="bi bi-info-circle-fill"></i>
+                      </Button>
                       </OverlayTrigger>
                     </td>
                   </tr>
@@ -133,6 +158,37 @@ export function Livros() {
             </tbody>
           </Table>
         )}
+        <Modal
+          show={livroSelecionado !== null}
+          onHide={() => setLivroSelecionado(null)}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Detalhes do Livro</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {livroSelecionado && (
+              <div>
+                <h5>{livroSelecionado.titulo}</h5>
+                <p>Autor: {livroSelecionado.autor}</p>
+                <p>Categoria: {livroSelecionado.categoria}</p>
+                <p>ISBN: {livroSelecionado.isbn}</p>
+                <img
+                  style={{ width: "200px" }}
+                  src={livroSelecionado.urlCapa}
+                  alt={livroSelecionado.titulo}
+                />
+              </div>
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => setLivroSelecionado(null)}
+            >
+              Fechar
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     </div>
   );

@@ -16,6 +16,7 @@ import { Emprestimos } from "./pages/Emprestimos/Emprestimos";
 import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
 import { Ajuda } from "./pages/Ajuda/Ajuda";
 import { Quiz } from "./pages/Quiz/Quiz";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 
 export function App() {
@@ -52,6 +53,7 @@ export function App() {
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/ajuda" element={<Ajuda/>} />
+            <Route path="*" element={<NotFound />} ></Route>
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>

@@ -38,7 +38,7 @@ export function Emprestimos() {
               Adicionar emprestimo
             </Button>
           </OverlayTrigger>
-        </div>
+          </div>
         <hr />
         {emprestimos === null ? (
           <Loader />
