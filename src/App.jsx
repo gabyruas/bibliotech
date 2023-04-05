@@ -17,6 +17,7 @@ import { EditarEmprestimo } from "./pages/EditarEmprestimo/EditarEmprestimo";
 import { Ajuda } from "./pages/Ajuda/Ajuda";
 import { Quiz } from "./pages/Quiz/Quiz";
 import { NotFound } from "./pages/NotFound/NotFound";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 
 export function App() {
@@ -35,9 +36,21 @@ export function App() {
     // Quando o App for renderizado/inicializado
   }, []);
 
+  const [temaDark, setTemaDark] = useState(false);
+  
+  function alternar(){
+    if (temaDark === true){
+      setTemaDark(false)
+    }
+    else{
+      setTemaDark(true);
+    }
+  }
+
   return (
     <>
       <AuthContext.Provider value={usuarioLogado}>
+      <ThemeContext.Provider value={{temaDark: temaDark, alternar: alternar}}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Root />}>
@@ -56,6 +69,7 @@ export function App() {
             <Route path="*" element={<NotFound />} ></Route>
           </Routes>
         </BrowserRouter>
+        </ThemeContext.Provider>
       </AuthContext.Provider>
       <Toaster />
     </>

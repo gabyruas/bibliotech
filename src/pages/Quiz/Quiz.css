@@ -35,7 +35,9 @@
   }
 
   .text-center {
-    margin-top: 90px;
+    padding: 70px;
+    
+    
   }
 
 /* CAIXA DE PERGUNTS/RESPOSTAS*/
@@ -156,3 +158,9 @@
     padding-top: 30px;
   }
 
+  .livro-imagem{
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  
