@@ -1,0 +1,166 @@
+/* body {
+    color: #ffffff;
+    margin: 0 auto;
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+  } */
+  
+  /* sem erro */
+  .box {
+    display: inline-block;
+    justify-content:center;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+ /* .box {
+    /* background-color: #96fe7c; */
+    /* display: inline-block; */
+    /* margin-left: 90px; */
+    /* justify-content: space-between;
+    margin-left: 150px;    
+  }  */
+
+ img {
+    /* text-align: center; */
+    display: inline-block;
+    margin: 0 100px;
+    /* position: relative;
+    grid-area: 1/ -1;
+    transform: translate(10%, 23%); */
+    vertical-align: middle;
+  }
+
+  .text-center {
+    padding: 70px;
+    
+    
+  }
+
+/* CAIXA DE PERGUNTS/RESPOSTAS*/
+  /* .app {
+    background-color: #55bd74;
+    width: 500px;
+    min-height: 300px;
+    height: min-content;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+    display: flex;
+    /* display: inline-block;
+    justify-content: space-evenly;
+  } */
+  
+  .app {
+    background-color: #55bd74;
+    width: 700px;
+    min-height: 500px;
+    height: min-content;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+    display: flex;
+    /* display: inline-block; */
+    justify-content: space-evenly;
+    font-size: 25px;
+  }
+
+  .score-section {
+    display: flex;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* QUESTOES/SESSAO ESQUERDA/TIMER */
+  .question-section {
+    width: 100%;
+    position: relative;
+  }
+  
+  .question-count {
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .question-count span {
+    font-size: 34px;
+  }
+  
+  .question-text {
+    margin-bottom: 12px;
+    color: #ffffff;
+
+    margin-right: 15px;
+    font-size: 30px;
+  }
+  
+  /* .timer-text {
+    background: rgb(230, 153, 12);
+    padding: 15px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border: 5px solid rgb(255, 189, 67);
+    border-radius: 15px;
+    text-align: center;
+  } */
+  
+  /* RESPOSTAS/SESSAO DIREITA */
+  .answer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  button {
+    width: 100%;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #102e12;
+    border-radius: 15px;
+    /* display: flex; */
+    padding: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid #d68418;
+    cursor: pointer;
+    
+  }
+  
+
+
+  .correct {
+    background-color: #2f922f;
+  }
+  
+  .incorrect {
+    background-color: #ff3333;
+  }
+  
+  button:hover {
+    background-color: #555e7d;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button svg {
+    margin-right: 5px;
+  }
+
+  h2 {
+    font-style: italic;
+    padding-top: 30px;
+  }
+
+  .livro-imagem{
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  

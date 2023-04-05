@@ -12,10 +12,16 @@ import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { deleteLivro, getLivros } from "../../firebase/livros";
 import "./Livros.css";
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 export function Livros() {
+
   const [livros, setLivros] = useState(null);
   const [livroSelecionado, setLivroSelecionado] = useState(null);
+
+  const resultado = useContext(ThemeContext);
+  const temaDark = resultado.temaDark;
   
   function onSelectLivro(livro) {
     setLivroSelecionado(livro);
@@ -24,6 +30,7 @@ export function Livros() {
   useEffect(() => {
     initializeTable();
   }, []);
+
 
   function initializeTable() {
     getLivros().then((resultados) => {
@@ -56,7 +63,7 @@ export function Livros() {
 //   }
 
   return (
-    <div className="livros">
+    <div className={`${temaDark ? "bg-dark text-light" : "bg-light text-dark"} livros`}>
       <Container>
         <div className="d-flex justify-content-between align-items-center">
           <h1>Livros</h1>
@@ -78,7 +85,7 @@ export function Livros() {
         {livros === null ? (
           <Loader />
         ) : (
-          <Table striped bordered hover>
+          <Table striped bordered hover className={temaDark ? "table table-dark" : ""}>
             <thead>
               <tr>
                 <th>Título</th>

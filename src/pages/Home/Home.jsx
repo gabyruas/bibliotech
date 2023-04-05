@@ -1,13 +1,21 @@
+
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import { adicionarEmprestimo, getEmprestimos } from '../../firebase/emprestimos';
 import { addLivro, getLivros } from '../../firebase/livros';
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 export function Home() {
   const [loanCount, setLoanCount] = useState(0);
   const [bookCount, setBookCount] = useState(0);
   const [pendingLoanCount, setPendingLoanCount] = useState(0);
   const [returnedLoanCount, setReturnedLoanCount] = useState(0);
+  const resultado = useContext(ThemeContext);
+  const temaDark = resultado.temaDark;
+  
+  const resultado = useContext(ThemeContext);
+  const temaDark = resultado.temaDark;
 
   useEffect(() => {
     async function fetchDataEmprestimos() {
@@ -31,12 +39,14 @@ export function Home() {
     }
 
     fetchDataLivros();
-  }, []);
-  
-
- 
+  }, []); 
 
   return (
+  
+    <div className={`${temaDark ? "bg-dark text-light" : "bg-light text-dark"} home`}>
+      HOME
+    </div>
+    
     <div className="container mt-4">
       <h5><b>Visão Geral</b></h5>
       <hr></hr>
@@ -72,3 +82,6 @@ export function Home() {
     </div>
   );
 }
+  
+  
+  
