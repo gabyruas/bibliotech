@@ -14,8 +14,6 @@ export function Home() {
   const resultado = useContext(ThemeContext);
   const temaDark = resultado.temaDark;
   
-  const resultado = useContext(ThemeContext);
-  const temaDark = resultado.temaDark;
 
   useEffect(() => {
     async function fetchDataEmprestimos() {
@@ -43,17 +41,17 @@ export function Home() {
 
   return (
   
-    <div className={`${temaDark ? "bg-dark text-light" : "bg-light text-dark"} home`}>
-      HOME
-    </div>
-    
-    <div className="container mt-4">
-      <h5><b>Visão Geral</b></h5>
+    // <div className={`${temaDark ? "bg-dark text-light" : "bg-light text-dark"}`}>
+    //   HOME
+    // </div>
+    // <div className={`${temaDark ? "bg-dark text-light" : "bg-light text-dark"} ` }>
+    <div className= "container mt-4">
+      <h5 ><b>Visão Geral</b></h5>
       <hr></hr>
 
       <Row className="mt-4 justify-content-center">
         <Col md={4} className="d-flex justify-content-center">
-          <Card>
+          <Card >
             <Card.Body>
               <Card.Title>Total de empréstimos:</Card.Title>
               <Card.Text className="text-success mt-4"><h1>{loanCount}</h1></Card.Text>
@@ -63,7 +61,7 @@ export function Home() {
 
         <Col md={4} className="d-flex justify-content-center">
           <Card>
-            <Card.Body>
+            <Card.Body >
               <Card.Title>Total de livros cadastrados:</Card.Title>
               <Card.Text className="text-success mt-4"><h1>{bookCount}</h1></Card.Text>
             </Card.Body>
@@ -72,7 +70,7 @@ export function Home() {
 
         <Col md={4} className="d-flex justify-content-center">
           <Card>
-            <Card.Body>
+            <Card.Body >
               <Card.Title>Devolvidos e Pendentes:</Card.Title>
               <Card.Text className="text-success"><h1>Devolvidos: {returnedLoanCount} <br></br> <span className="text-warning">Pendentes: {pendingLoanCount}</span></h1></Card.Text>
             </Card.Body>
@@ -80,6 +78,8 @@ export function Home() {
         </Col>
       </Row>
     </div>
+    // </div>
+    
   );
 }
   
