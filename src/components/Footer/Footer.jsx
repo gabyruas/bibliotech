@@ -7,6 +7,7 @@ import {
     MDBContainer,
     MDBBtn
 } from 'mdb-react-ui-kit';
+import { Link } from "react-router-dom";
 
 export function Footer() {
     return (
@@ -56,8 +57,8 @@ export function Footer() {
                     <Col>
                         <div className='text-center p-3' style={{ backgroundColor: '#198754ab' }}>
 
-                            <a className='text-light'>
-                                © CopyRight Squad5
+                            <a className='text-light' href='https://www.linkedin.com/in/gustavoleonardi/'>
+                                © Gustavo Leonardi
                             </a>
                         </div>
                     </Col>
