@@ -1,0 +1,64 @@
+  .menu-home {
+      width: 100%;
+      height: 55px;
+      background-color: #198754;
+   }
+
+  .botao-menu {
+    width: 80px;
+    height: 55px;
+    background-color: #198754;
+    border: none;
+    font-size: 25px;
+   }
+
+   img {
+    width: 40px;
+   }
+
+  .body-menu {
+    background-color: #198754;
+  }
+
+  .navbar {
+    background-color: #198754;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    vertical-align:text-top;
+    
+  }
+  
+  .menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+  }
+  
+  .nav-menu {
+    
+    width: 250px;
+    height: 100vh;
+    font-size: 30px;
+    justify-content: center;
+    margin-left: 20px;
+    
+  }
+  
+  .nav-menu a:hover {
+    color: #ffffff;
+    width: 10%;
+  }
+
+  .navbar-toggler-icon {
+    width: 50px;
+}
+
+  .nav-menu-items {
+    width: 100%;
+  }
+
+  span {
+    margin-left: 16px;
+  }
