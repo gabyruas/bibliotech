@@ -6,13 +6,22 @@ import { Link } from "react-router-dom";
 import { Accordion, Carousel, Card,Button } from "react-bootstrap";
 import { Footer } from "../../components/Footer/Footer";
 import "./Ajuda.css";
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { Sun, Moon } from 'react-bootstrap-icons';
 
 
 export function Ajuda() {
 
+    const resultado = useContext(ThemeContext);
+    const temaDark = resultado.temaDark;
+    const alternar = resultado.alternar;
     return (
-        <>
-            <Navbar bg="success" variant="light" expand="lg">
+        // <>
+        <div className={`${temaDark ? "bg-dark  text-light" : "bg-light text-dark"}`}>
+        <Navbar bg={temaDark ? "dark" : "success"}
+            variant={temaDark ? "dark" : "light"}
+            expand="lg">
                 <Container fluid>
                     <Navbar.Brand>
                         <Link to="/">
@@ -26,6 +35,9 @@ export function Ajuda() {
                                 Home
                             </Nav.Link>
                         </Nav>
+                        <Button variant={temaDark ? "dark" : "success"} style={{width: "50px"}} onClick={alternar}>
+                                {temaDark ? <Moon /> : <Sun style={{color:"yellowgreen"}} />}
+                            </Button>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
@@ -124,6 +136,7 @@ export function Ajuda() {
         </Container>
 
 {/* ---------------------- fim accordion ---------------------- */}
-           </>
+        </div>
+        //    {/* </> */}
     )
 }

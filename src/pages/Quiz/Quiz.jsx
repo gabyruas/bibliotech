@@ -1,12 +1,19 @@
 import React, {useState} from "react";
-import { Col, Container, Nav, Navbar, Row} from "react-bootstrap";
+import { Col, Container, Nav, Navbar, Row, Button} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoIcon from "./../../assets/icons/livros.png";
 import livros from "./../../assets/images/openbook.png";
 import "./Quiz.css";
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { Sun, Moon } from 'react-bootstrap-icons';
 
 
 export function Quiz() {
+
+    const resultado = useContext(ThemeContext);
+    const temaDark = resultado.temaDark;
+    const alternar = resultado.alternar;
 
 const pergunta = [{
                 enunciado: 'A Literatura é considerada uma forma de Arte, partindo desse pressuposto é correto afirmar que a Arte Literária é:',
@@ -98,7 +105,9 @@ const handleAnswerButtonClick = (isCorrect) => {
 return (
     <>
     {/* -------------------- Navbar inicio -------------------- */}
-    <Navbar bg="success" variant="light" expand="lg">
+    <Navbar bg={temaDark ? "dark" : "success"}
+                variant={temaDark ? "dark" : "light"}
+                expand="lg">
                 <Container fluid>
                     <Navbar.Brand>
                         <Link to="/">
@@ -111,18 +120,23 @@ return (
                             <Nav.Link as={Link} to="/">
                                 Home
                             </Nav.Link>
+                            <Button variant={temaDark ? "dark" : "success"} onClick={alternar}>
+                                {temaDark ? <Moon /> : <Sun style={{color:"yellowgreen"}} />}
+                            </Button>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
     </Navbar>
     {/* -------------------- Navbar fim -------------------- */}
-
+        <div className={`${temaDark ? "bg-dark  text-light" : "bg-light text-dark"}`}>
         <Col>
             <Row><h1>Quiz Literário</h1></Row>
             <Row><h2 className="text-center">Mostre que sabe sobre literatura!</h2></Row>
         </Col>
-        <div className="text-center">
-            <img src={livros} width="400px" height="400px" alt="livros"></img>
+        </div>
+
+        <div  className={`${temaDark ? "bg-dark  text-light" : "bg-light text-dark"} text-center`} >
+            <img src={livros} width="500px" height="500px" alt="livros" className="livro-imagem" ></img>
         
     <div className="box">    
     <div className='app'>
@@ -142,7 +156,7 @@ return (
 
                 <div className='answer-section'>
                     {pergunta[questaoAtual].alternativas.map((alternativaCorreta, index) => (
-                        <button onClick={() => handleAnswerButtonClick(alternativaCorreta.isCorrect)} key={index}>{alternativaCorreta.resp}</button>
+                        <button className="rounded-3" onClick={() => handleAnswerButtonClick(alternativaCorreta.isCorrect)} key={index}>{alternativaCorreta.resp}</button>
                     ))}
                 </div>
             </>

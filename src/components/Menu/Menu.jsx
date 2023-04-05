@@ -1,15 +1,23 @@
 import "./Menu.css";
-import { Nav, Navbar, Offcanvas, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, Nav, Navbar, Offcanvas, OverlayTrigger, Tooltip } from "react-bootstrap";
 import logoIcon from "./../../assets/icons/livros.png";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../firebase/auth";
 import React, {useState} from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { Sun, Moon } from 'react-bootstrap-icons';
 
 
 
 
 export function Menu() {
   const [show, setShow] = useState(false);
+
+  const resultado = useContext(ThemeContext)
+  const temaDark = resultado.temaDark;
+  const alternar = resultado.alternar;
+  
 
   const navigate = useNavigate();
 
@@ -23,15 +31,17 @@ export function Menu() {
 
   return (
     <>
-    <Navbar bg="success" variant="light" expand="lg">
+    <Navbar bg={temaDark ? "dark" : "success"}
+    variant={temaDark ? "dark" : "light"}
+    expand="lg">
       {/* <div className="menu-home"> */}
-      <button className="botao-menu" onClick={handleShow}>
-      <span className="navbar-toggler-icon"></span>
+      <button className={`${temaDark ? "bg-dark text-light" : ""} botao-menu`} onClick={handleShow}>
+      <span className={`${temaDark ? "bg-dark text-light" : ""} navbar-toggler-icon`}></span>
       </button>
       {/* </div> */}
       </Navbar>
 
-      <Offcanvas show={show} onHide={handleClose}>
+      <Offcanvas  className={`${temaDark ? "bg-dark text-light" : ""}`} show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
         <div>
           <Offcanvas.Title style={{fontSize: 40}}>Navegue
@@ -39,7 +49,7 @@ export function Menu() {
           </Offcanvas.Title>
           </div>
         </Offcanvas.Header>
-        <Offcanvas.Body className="body-menu">
+        <Offcanvas.Body className={`${temaDark ? "bg-dark text-light" : "bg-success text-dark"} body-menu`}>
           <div className="nav-menu">
           <Nav.Link as={Link} to="/" >
                 Home
@@ -59,6 +69,9 @@ export function Menu() {
             <Nav.Link as={Link} to="/quiz">
               Quiz!
             </Nav.Link>
+            <Button className="trocaTema"variant={temaDark ? "dark" : "success"} onClick={alternar}>
+              {temaDark ? <Moon /> : <Sun style={{color:"black"}} />}
+            </Button>
             <br/>
             <OverlayTrigger
               delay={{ hide: 450, show: 300 }}

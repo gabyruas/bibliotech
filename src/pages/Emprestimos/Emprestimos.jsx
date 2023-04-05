@@ -10,9 +10,15 @@ import {
 import { Link } from "react-router-dom";
 import { getEmprestimos } from "../../firebase/emprestimos";
 import { Loader } from "../../components/Loader/Loader";
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 export function Emprestimos() {
   const [emprestimos, setEmprestimos] = useState(null);
+
+  
+  const resultado = useContext(ThemeContext);
+  const temaDark = resultado.temaDark;
 
   useEffect(() => {
     getEmprestimos().then((busca) => {
@@ -21,7 +27,7 @@ export function Emprestimos() {
   }, []);
 
   return (
-    <div className="emprestimos">
+    <div className={`${temaDark ? "bg-dark text-light" : "bg-light text-dark"} emprestimos`}>
       <Container>
         <div className="d-flex justify-content-between align-items-center">
           <h1>Emprestimos</h1>
@@ -43,7 +49,7 @@ export function Emprestimos() {
         {emprestimos === null ? (
           <Loader />
         ) : (
-          <Table striped bordered hover>
+          <Table striped bordered hover className={temaDark ? "table table-dark" : ""}>
             <thead>
               <tr>
                 <th>Leitor</th>
@@ -58,8 +64,8 @@ export function Emprestimos() {
             <tbody>
               {emprestimos.map((emprestimo) => {
                 const dataEmprestimo = emprestimo.dataEmprestimo
-                  .toDate()
-                  .toLocaleDateString("pt-br");
+                .toDate()
+                .toLocaleDateString("pt-br");
                 return (
                   <tr key={emprestimo.id}>
                     <td>{emprestimo.leitor}</td>
