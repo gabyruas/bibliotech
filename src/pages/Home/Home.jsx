@@ -1,12 +1,8 @@
-
-import React, { useState, useEffect } from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
-import { adicionarEmprestimo, getEmprestimos } from '../../firebase/emprestimos';
-import { addLivro, getLivros } from '../../firebase/livros';
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
 export function Home() {
+
   const [loanCount, setLoanCount] = useState(0);
   const [bookCount, setBookCount] = useState(0);
   const [pendingLoanCount, setPendingLoanCount] = useState(0);
@@ -81,7 +77,5 @@ export function Home() {
     // </div>
     
   );
+
 }
-  
-  
-  

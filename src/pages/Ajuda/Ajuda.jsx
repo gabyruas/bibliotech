@@ -4,6 +4,7 @@ import imgCard2 from "./../../assets/images/login.png";
 import imgCard1 from "./../../assets/images/openbook.png"
 import { Link } from "react-router-dom";
 import { Accordion, Carousel, Card,Button } from "react-bootstrap";
+import { Footer } from "../../components/Footer/Footer";
 import "./Ajuda.css";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
