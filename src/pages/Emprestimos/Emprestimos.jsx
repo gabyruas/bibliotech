@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   OverlayTrigger,
+  Pagination,
   Table,
   Tooltip,
 } from "react-bootstrap";
