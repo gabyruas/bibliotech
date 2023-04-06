@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Badge,
   Button,
   Container,
   Form,
@@ -31,12 +32,19 @@ export function AdicionarEmprestimo() {
   function onSubmit(data) {
     getLivro(data.idLivro).then((livro) => {
       delete data.idLivro;
-      let novoEmprestimo = {
+      const novoEmprestimo = {
         ...data,
         status: "Pendente",
         livro,
         dataEmprestimo: new Date(),
       };
+
+      if (new Date(data.dataEntrega) > new Date()) {
+        novoEmprestimo.status = "Em andamento";
+      } else {
+        novoEmprestimo.status = "Atrasado";
+      }
+
       adicionarEmprestimo(novoEmprestimo).then(() => {
         toast.success("Empréstimo adicionado com sucesso!", {
           duration: 2000,
@@ -101,6 +109,8 @@ export function AdicionarEmprestimo() {
               {errors.telefone?.message}
             </Form.Text>
           </Form.Group>
+
+
           <Form.Group className="mb-3">
             <Form.Label>Livro</Form.Label>
             <Form.Select
@@ -108,7 +118,11 @@ export function AdicionarEmprestimo() {
               {...register("idLivro", { required: "Livro é obrigatório!" })}
             >
               {livros.map((livro) => (
-                <option key={livro.id} value={livro.id}>
+                <option 
+                key={livro.id} 
+                value={livro.id}
+                style={{ color: livro.status === "Atrasado" ? "red" : "black" }}
+                >
                   {livro.titulo}
                 </option>
               ))}
@@ -117,6 +131,19 @@ export function AdicionarEmprestimo() {
               {errors.idLivro?.message}
             </Form.Text>
           </Form.Group>
+          <Form.Group className="mb-3">
+          <Form.Label>Data de Entrega</Form.Label>
+          <Form.Control
+          type="date"
+          className={errors.dataEntrega && "is-invalid"}
+          {...register("dataEntrega", {
+          required: "Data de Entrega é obrigatória!",
+               })}
+              />
+        <Form.Text className="invalid-feedback">
+          {errors.dataEntrega?.message}
+           </Form.Text>
+        </Form.Group>
           <OverlayTrigger
             delay={{ hide: 450, show: 300 }}
             overlay={(props) => (
