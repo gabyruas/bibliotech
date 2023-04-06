@@ -4,7 +4,6 @@ import {
   Button,
   Container,
   OverlayTrigger,
-  Pagination,
   Table,
   Tooltip,
 } from "react-bootstrap";
@@ -22,7 +21,6 @@ export function Emprestimos() {
   const [startDoc, setStartDoc] = useState();
   const [endDoc, setEndDoc] = useState();
 
-  
   const resultado = useContext(ThemeContext);
   const temaDark = resultado.temaDark;
 
@@ -71,7 +69,11 @@ export function Emprestimos() {
   }
 
   return (
-    <div className={`${temaDark ? "bg-dark text-light" : "bg-light text-dark"} emprestimos`}>
+    <div
+      className={`${
+        temaDark ? "bg-dark text-light" : "bg-light text-dark"
+      } emprestimos`}
+    >
       <Container>
         <div className="d-flex justify-content-between align-items-center">
           <h1>Emprestimos</h1>
@@ -93,7 +95,12 @@ export function Emprestimos() {
         {emprestimos === null ? (
           <Loader />
         ) : (
-          <Table striped bordered hover className={temaDark ? "table table-dark" : ""}>
+          <Table
+            striped
+            bordered
+            hover
+            className={temaDark ? "table table-dark" : ""}
+          >
             <thead>
               <tr>
                 <th>Leitor</th>
@@ -108,8 +115,8 @@ export function Emprestimos() {
             <tbody>
               {emprestimos.map((emprestimo) => {
                 const dataEmprestimo = emprestimo.dataEmprestimo
-                .toDate()
-                .toLocaleDateString("pt-br");
+                  .toDate()
+                  .toLocaleDateString("pt-br");
                 return (
                   <tr key={emprestimo.id}>
                     <td>{emprestimo.leitor}</td>
@@ -128,6 +135,31 @@ export function Emprestimos() {
                       </Badge>
                     </td>
                     <td>{dataEmprestimo}</td>
+                    <Dropdown>
+                      <Dropdown.Toggle variant="secondary" id="dropdown-status">
+                        {emprestimo.status === "Pendente"
+                          ? "Pendente"
+                          : "Devolvido"}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          onClick={() =>
+                            updateStatus(emprestimo.id, "Pendente")
+                          }
+                          disabled={emprestimo.status === "Pendente"}
+                        >
+                          Pendente
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() =>
+                            updateStatus(emprestimo.id, "Devolvido")
+                          }
+                          disabled={emprestimo.status === "Devolvido"}
+                        >
+                          Devolvido
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                     <td>
                       <OverlayTrigger
                         delay={{ hide: 450, show: 300 }}
